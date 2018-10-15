@@ -21,11 +21,10 @@ void draw(){
 
 class NormalParticle implements Particle{
 	double dX,dY,dTheta,dSpeed,ySize;
-	int R,G,B;
 		NormalParticle(){
 			dX = dY = 250;
 			dTheta = Math.random()*TWO_PI;
-			dSpeed = (Math.random()*6)+1;
+			dSpeed = (Math.random()*4)+1;
 			ySize = (Math.random()*2+1);
 		}
 	
@@ -34,6 +33,7 @@ class NormalParticle implements Particle{
 			fill(255);
 			ellipse((float)dX,(float)dY,3,(float)ySize);
 			fill(0);
+			ellipse(250,250,100,100);
 		}
 	
 		public void move(){
@@ -101,7 +101,7 @@ class JumboParticle extends NormalParticle{
 			if(dX > 1500 || dX < -300 || dY > 1500 || dY < -300){
 				dX = dY = 250;
 				dTheta = Math.random()*TWO_PI;
-				dSpeed = (Math.random()*6)+1;
+				dSpeed = (Math.random()*4)+1;
 				dX = dX + Math.cos(dTheta)*dSpeed;
 				dY = dY + Math.sin(dTheta)*dSpeed;
 			}
