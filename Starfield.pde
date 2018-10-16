@@ -1,9 +1,9 @@
 Particle[] p;
 
 void setup(){
-	size(500,500);
-	frameRate(50);
-	p = new Particle[250];
+	size(1500,1000);
+	frameRate(40);
+	p = new Particle[500];
 	for(int i = 0; i < p.length; i++){
 		p[i] = new NormalParticle();
 	}
@@ -17,32 +17,38 @@ void draw(){
 		p[i].show();
 		p[i].move();
 	}
+	fill(0);
+    ellipse(750, 500, 150, 150);
+    p[0].move();
+    p[0].show();
 }
 
 class NormalParticle implements Particle{
 	double dX,dY,dTheta,dSpeed,ySize;
+	int R,G,B;
 		NormalParticle(){
-			dX = dY = 250;
-			dTheta = Math.random()*TWO_PI;
-			dSpeed = (Math.random()*2)+.25;
-			ySize = (Math.random()*2+1);
+			dX = 750;
+			dY = 500;
+			dTheta = Math.random()*(Math.PI*2);
+			dSpeed = (Math.random()*4+.5);
+			ySize = (Math.random()*5+1);
 		}
 	
 		public void show(){
 			noStroke();
 			fill(255);
-			ellipse((float)dX,(float)dY,3,(float)ySize);
+			ellipse((float)dX,(float)dY,5,(float)ySize);
 			fill(0);
-			ellipse(250,250,100,100);
 		}
 	
 		public void move(){
 			dX = dX + Math.cos(dTheta)*dSpeed;
 			dY = dY + Math.sin(dTheta)*dSpeed;
-			if(dX > 700 || dX < -50 || dY > 700 || dY < -50){
-				dX = dY = 250;
-				dTheta = Math.random()*TWO_PI;
-				dSpeed = (Math.random()*6)+1;
+			if(dX > 1500 || dX < 0 || dY > 1000 || dY < 0){
+				dX = 750;
+				dY = 500;
+				dTheta = Math.random()*(Math.PI*2);
+				dSpeed = (Math.random()*4+.5);
 				dX = dX + Math.cos(dTheta)*dSpeed;
 				dY = dY + Math.sin(dTheta)*dSpeed;
 			}
@@ -73,7 +79,7 @@ class OddballParticle implements Particle{
 		myX = myX + (int)(Math.random()*7-3);
 		myY = myY + (int)(Math.random()*7-3);
 
-		if(myX > 600 || myX < -50 || myY > 600 || myY < -50){
+		if(myX > 1600 || myX < -100 || myY > 1100 || myY < -100){
 			myX = (int)(Math.random()*400);
 			myY = (int)(Math.random()*400);
 		}
@@ -98,10 +104,11 @@ class JumboParticle extends NormalParticle{
 	public void move(){
 			dX = dX + Math.cos(dTheta)*dSpeed;
 			dY = dY + Math.sin(dTheta)*dSpeed;
-			if(dX > 1500 || dX < -300 || dY > 1500 || dY < -300){
-				dX = dY = 250;
-				dTheta = Math.random()*TWO_PI;
-				dSpeed = (Math.random()*2)+.25;
+			if(dX > 1600 || dX < -100 || dY > 1100 || dY < -100){
+				dX = 750;
+				dY = 500;
+				dTheta = Math.random()*(Math.PI*2);
+				dSpeed = (Math.random()*4+.5);
 				dX = dX + Math.cos(dTheta)*dSpeed;
 				dY = dY + Math.sin(dTheta)*dSpeed;
 			}
