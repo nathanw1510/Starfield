@@ -24,7 +24,7 @@ class NormalParticle implements Particle{
 		NormalParticle(){
 			dX = dY = 250;
 			dTheta = Math.random()*TWO_PI;
-			dSpeed = (Math.random()*4)+1;
+			dSpeed = (Math.random()*10)+.25;
 			ySize = (Math.random()*2+1);
 		}
 	
@@ -101,7 +101,7 @@ class JumboParticle extends NormalParticle{
 			if(dX > 1500 || dX < -300 || dY > 1500 || dY < -300){
 				dX = dY = 250;
 				dTheta = Math.random()*TWO_PI;
-				dSpeed = (Math.random()*4)+1;
+				dSpeed = (Math.random()*10)+.25;
 				dX = dX + Math.cos(dTheta)*dSpeed;
 				dY = dY + Math.sin(dTheta)*dSpeed;
 			}
