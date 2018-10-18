@@ -9,6 +9,7 @@ void setup(){
 	}
 	p[0] = new OddballParticle();
 	p[1] = new JumboParticle();
+	p[2] = new JumboParticle();
 }
 
 void draw(){
@@ -17,42 +18,49 @@ void draw(){
 		p[i].show();
 		p[i].move();
 	}
-	fill(0);
-    ellipse(750, 500, 150, 150);
+	fill(0,0,0,240);
+    ellipse(750,500,150, 150);
+    fill(0,0,0,200);
+    ellipse(750,500,250,250);
+    fill(0,0,0,100);
+    ellipse(750,500,400,400);
     p[0].move();
     p[0].show();
 }
 
 class NormalParticle implements Particle{
 	double dX,dY,dTheta,dSpeed,ySize;
-	int R,G,B;
+	int left;
 		NormalParticle(){
 			dX = 750;
 			dY = 500;
 			dTheta = Math.random()*(Math.PI*2);
 			dSpeed = (Math.random()*4+.5);
 			ySize = (Math.random()*5+1);
+			left = 0;
 		}
 	
 		public void show(){
 			noStroke();
 			fill(255);
-			ellipse((float)dX,(float)dY,5,(float)ySize);
-			fill(0);
+			ellipse((float)dX,(float)dY,6,(float)ySize);
 		}
 	
 		public void move(){
 			dX = dX + Math.cos(dTheta)*dSpeed;
 			dY = dY + Math.sin(dTheta)*dSpeed;
 			if(dX > 1500 || dX < 0 || dY > 1000 || dY < 0){
-				dX = 750;
-				dY = 500;
-				dTheta = Math.random()*(Math.PI*2);
-				dSpeed = (Math.random()*4+.5);
-				dX = dX + Math.cos(dTheta)*dSpeed;
-				dY = dY + Math.sin(dTheta)*dSpeed;
+				left++;
+				if(left == 200){
+					dX = 750;
+					dY = 500;
+					dTheta = Math.random()*(Math.PI*2);
+					dSpeed = (Math.random()*4+.5);
+					left = 0;
+					redraw();
+				}
 			}
-		}
+		}	
 }
 
 interface Particle{
